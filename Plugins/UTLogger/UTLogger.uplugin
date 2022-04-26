@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "[Unreal Toolbox] Logger",
+	"Description": "A simple logger plugin",
+	"Category": "Unreal Toolbox",
+	"CreatedBy": "Henry Jooste",
+	"CreatedByURL": "",
+	"DocsURL": "https://github.com/hfjooste/UT-Logger",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "UTLogger",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformDenyList": [
+				"IOS",
+				"Android",
+				"HTML5",
+				"TVOS",
+				"Mac",
+				"Linux",
+				"LinuxAArch64"
+			]
+		}
+	]
+}
