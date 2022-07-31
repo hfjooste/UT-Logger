@@ -65,11 +65,28 @@ void ULog::LogToFile(ELogType Type, const FString Tag, const FString Text)
 #else
 	const FString LogFile = FPaths::ProjectDir() + "/Logs/" + DateText + ".log";
 #endif
+
+	IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+	if (PlatformFile.FileExists(*LogFile) && PlatformFile.FileSize(*LogFile) > MaxFileSize)
+	{
+		int Index = 0;
+		const FString OldSuffix = ".log";
+		
+		FString NewLogFile;
+		do
+		{
+			Index++;
+			const FString NewSuffix = "-" + FString::FromInt(Index) + OldSuffix;
+			NewLogFile = LogFile.Replace(*OldSuffix, *NewSuffix);
+		}
+		while (PlatformFile.FileExists(*NewLogFile));
+		PlatformFile.MoveFile(*NewLogFile, *LogFile);
+	}
 	
-	FString LogText;
-	FFileHelper::LoadFileToString(LogText, *LogFile);
-	LogText += FDateTime::Now().ToString(TEXT("%Y/%m/%d %H:%M:%S")) + GetLogTypeText(Type) + "[" + Tag + "] " + Text + "\r\n";
-	FFileHelper::SaveStringToFile(LogText, *LogFile);
+	const FString LogText = FDateTime::Now().ToString(TEXT("%Y/%m/%d %H:%M:%S")) +
+		GetLogTypeText(Type) + "[" + Tag + "] " + Text + "\r\n";
+	FFileHelper::SaveStringToFile(LogText, *LogFile, FFileHelper::EEncodingOptions::AutoDetect,
+		&IFileManager::Get(), FILEWRITE_Append);
 }
 
 /**

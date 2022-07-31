@@ -15,6 +15,11 @@ class UTLOGGER_API ULog final : public UBlueprintFunctionLibrary
 	
 public:
 	/**
+	 * @brief The maximum size of a log file before a new file is created
+	 */
+	inline static int MaxFileSize = 10 * 1024 * 1024;
+	
+	/**
 	 * @brief Log an error
 	 * @param Tag The category of the log entry
 	 * @param Text The text to log out
