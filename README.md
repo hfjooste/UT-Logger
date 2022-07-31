@@ -8,8 +8,8 @@ The Logger Plugin for Unreal Engine allows you to easily log info to file and vi
 ## Installation
 1. Download the latest release from GitHub
 2. Navigate to `C:\Program Files\Epic Games\UE_{VERSION}\Engine\Plugins\`
-3. Create a `UnrealToolbox` folder if needed
-4. Extract the release and copy to the `UnrealToolbox` folder
+3. Create a `Marketplace` folder if needed
+4. Extract the release and copy to the `Marketplace` folder
 5. Open Unreal Engine
 6. Click on `Edit > Plugins`
 7. Enable the plugin under the `Installed > Unreal Toolbox` category
