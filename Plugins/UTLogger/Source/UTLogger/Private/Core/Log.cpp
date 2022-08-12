@@ -61,7 +61,7 @@ void ULog::LogToFile(ELogType Type, const FString Tag, const FString Text)
 	const FString DateText = FDateTime::Now().GetDate().ToString(TEXT("%Y%m%d"));
 	
 #if !WITH_EDITOR
-	const FString LogFile = FString(FGenericPlatformProcess::ExecutablePath()) + "/Logs/" + DateText + ".log";
+	const FString LogFile = FPaths::ProjectLogDir() + "/" + DateText + ".log";
 #else
 	const FString LogFile = FPaths::ProjectDir() + "/Logs/" + DateText + ".log";
 #endif
